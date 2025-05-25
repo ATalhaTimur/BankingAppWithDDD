@@ -30,7 +30,13 @@ public class EfAccountRepository : IAccountRepository
         return await _context.Accounts.FirstOrDefaultAsync(a => a.Iban == iban);
     }
     public async Task<Account?> GetByIdAsync(Guid accountId)
-{
-    return await _context.Accounts.FindAsync(accountId);
-}
+    {
+        return await _context.Accounts.FindAsync(accountId);
+    }
+
+    public async Task UpdateAsync(Account account)
+    {
+        _context.Accounts.Update(account);
+        await _context.SaveChangesAsync();
+    }
 }

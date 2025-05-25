@@ -11,5 +11,6 @@ public class UserProfile : Profile
         CreateMap<User, UserResponse>(); // domain → DTO tek yonlu mapping
         CreateMap<Account, AccountResponse>();
         CreateMap<Transfer, TransferResponse>(); // ekle
+        CreateMap<Transaction, TransactionResponse>();
     }
 }

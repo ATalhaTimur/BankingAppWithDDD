@@ -10,4 +10,5 @@ public interface IAccountRepository
     Task<Account?> GetByIbanAsync(string iban);
 
     Task<Account?> GetByIdAsync(Guid accountId);
+    Task UpdateAsync(Account account);
 }

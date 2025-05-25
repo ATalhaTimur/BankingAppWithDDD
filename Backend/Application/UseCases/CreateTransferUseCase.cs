@@ -9,15 +9,18 @@ public class CreateTransferUseCase
 {
     private readonly IAccountRepository _accountRepo;
     private readonly ITransferRepository _transferRepo;
+    private readonly ITransactionRepository _transactionRepo;
     private readonly IMapper _mapper;
 
     public CreateTransferUseCase(
         IAccountRepository accountRepo,
         ITransferRepository transferRepo,
+        ITransactionRepository transactionRepo,
         IMapper mapper)
     {
         _accountRepo = accountRepo;
         _transferRepo = transferRepo;
+        _transactionRepo = transactionRepo;
         _mapper = mapper;
     }
 
@@ -57,6 +60,22 @@ public class CreateTransferUseCase
         };
 
         await _transferRepo.AddAsync(transfer);
+
+        // Komisyonu transaction olarak kaydet
+        var feeTransaction = new Transaction
+        {
+            Id = Guid.NewGuid(),
+            AccountId = senderAccount.Id,
+            Amount = fee,
+            TransactionType = TransactionType.Expense,
+            Category = TransactionCategory.TransferFee,
+            Description = $"Transfer fee for transfer {transfer.Id}",
+            IsSystemGenerated = true,
+            ExchangeRate = null,
+            CreatedAt = DateTime.UtcNow
+        };
+
+        await _transactionRepo.AddAsync(feeTransaction);
 
         return _mapper.Map<TransferResponse>(transfer);
     }

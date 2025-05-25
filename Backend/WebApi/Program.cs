@@ -27,6 +27,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapControllers(); // ✅ Bu burada olacak
+app.MapControllers(); //  Bu burada olacak
 
 app.Run();

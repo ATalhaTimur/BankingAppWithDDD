@@ -37,4 +37,45 @@ public class EfTransactionRepository : ITransactionRepository
         _context.Accounts.Update(account);
         await _context.SaveChangesAsync();
     }
+
+    public async Task<Transaction?> GetByIdAsync(Guid id)
+    {
+        return await _context.Transactions.FindAsync(id);
+    }
+
+    public async Task UpdateAsync(Transaction transaction)
+    {
+        _context.Transactions.Update(transaction);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(Guid id)
+    {
+        var transaction = await _context.Transactions.FindAsync(id);
+        if (transaction is not null)
+        {
+            _context.Transactions.Remove(transaction);
+            await _context.SaveChangesAsync();
+        }
+    }
+    public async Task<List<Transaction>> FilterAsync(Guid accountId, TransactionCategory? category, DateTime? fromDate, DateTime? toDate)
+    {
+        var query = _context.Transactions.AsQueryable();
+
+        query = query.Where(t => t.AccountId == accountId);
+
+        if (category.HasValue)
+            query = query.Where(t => t.Category == category.Value);
+
+        if (fromDate.HasValue)
+            query = query.Where(t => t.CreatedAt >= fromDate.Value);
+
+        if (toDate.HasValue)
+            query = query.Where(t => t.CreatedAt <= toDate.Value);
+
+        return await query
+            .OrderByDescending(t => t.CreatedAt)
+            .ToListAsync();
+    }
+
 }

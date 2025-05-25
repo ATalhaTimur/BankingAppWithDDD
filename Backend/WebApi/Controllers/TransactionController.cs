@@ -1,6 +1,7 @@
 using Application.DTOs;
 using Application.UseCases;
 using Microsoft.AspNetCore.Mvc;
+using Domain.Repositories;
 
 namespace WebApi.Controllers;
 
@@ -10,13 +11,22 @@ public class TransactionController : ControllerBase
 {
     private readonly CreateTransactionUseCase _createTransactionUseCase;
     private readonly GetTransactionsByAccountIdUseCase _getTransactionsByAccountIdUseCase;
+    private readonly UpdateTransactionUseCase _updateTransactionUseCase;
+    private readonly DeleteTransactionUseCase _deleteTransactionUseCase;
+    private readonly GetTransactionsByFilterUseCase _getTransactionsByFilterUseCase;
 
     public TransactionController(
         CreateTransactionUseCase createTransactionUseCase,
-        GetTransactionsByAccountIdUseCase getTransactionsByAccountIdUseCase)
+        GetTransactionsByAccountIdUseCase getTransactionsByAccountIdUseCase,
+        UpdateTransactionUseCase updateTransactionUseCase,
+        DeleteTransactionUseCase deleteTransactionUseCase,
+        GetTransactionsByFilterUseCase getTransactionsByFilterUseCase)
     {
         _createTransactionUseCase = createTransactionUseCase;
         _getTransactionsByAccountIdUseCase = getTransactionsByAccountIdUseCase;
+        _updateTransactionUseCase = updateTransactionUseCase;
+        _deleteTransactionUseCase = deleteTransactionUseCase;
+        _getTransactionsByFilterUseCase = getTransactionsByFilterUseCase;
     }
 
     [HttpPost]
@@ -32,4 +42,24 @@ public class TransactionController : ControllerBase
         var result = await _getTransactionsByAccountIdUseCase.HandleAsync(accountId);
         return Ok(result);
     }
-}
+    [HttpGet("filter")]
+    public async Task<IActionResult> Filter([FromQuery] TransactionFilterRequest filter)
+    {
+        var result = await _getTransactionsByFilterUseCase.HandleAsync(filter);
+        return Ok(result);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] CreateTransactionRequest request)
+    {
+        await _updateTransactionUseCase.HandleAsync(id, request);
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        await _deleteTransactionUseCase.HandleAsync(id);
+        return NoContent();
+    }
+} 

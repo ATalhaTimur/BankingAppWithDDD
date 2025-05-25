@@ -26,6 +26,9 @@ public static class DependencyInjection
         services.AddScoped<ITransactionRepository, EfTransactionRepository>();
         services.AddScoped<CreateTransactionUseCase>();
         services.AddScoped<GetTransactionsByAccountIdUseCase>();
+        services.AddScoped<UpdateTransactionUseCase>();
+        services.AddScoped<DeleteTransactionUseCase>();
+        services.AddScoped<GetTransactionsByFilterUseCase>();
 
         services.AddSingleton<ICurrencyRateService, MockCurrencyRateService>();
         services.AddScoped<ExchangeUseCase>();

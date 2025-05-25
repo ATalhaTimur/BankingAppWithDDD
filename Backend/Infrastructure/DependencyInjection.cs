@@ -14,6 +14,7 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, EfUserRepository>();
         services.AddScoped<CreateUserUseCase>();
         services.AddScoped<GetUsersUseCase>();
+        services.AddScoped<LoginUserUseCase>();
 
         services.AddScoped<IAccountRepository, EfAccountRepository>();
         services.AddScoped<CreateAccountUseCase>();

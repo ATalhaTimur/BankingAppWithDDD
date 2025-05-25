@@ -24,7 +24,7 @@ public class CreateAccountUseCase
 
         do
         {
-            iban = Domain.Helpers.IbanGenerator.Generate();
+            iban = Application.Helpers.IbanGenerator.Generate();
             var existing = await _accountRepository.GetByIbanAsync(iban);
             if (existing is null) break;
             tries++;

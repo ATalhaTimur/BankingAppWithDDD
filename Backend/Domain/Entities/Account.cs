@@ -15,8 +15,5 @@ public class Account
     public User? User { get; set; }
     public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
 
-    public Account()
-    { 
-        Iban = Domain.Helpers.IbanGenerator.Generate();
-    }
+
 }

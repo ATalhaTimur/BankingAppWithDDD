@@ -1,4 +1,4 @@
-namespace Domain.Helpers;
+namespace Application.Helpers;
 
 public static class IbanGenerator
 {

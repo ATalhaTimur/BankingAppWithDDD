@@ -8,8 +8,8 @@ const currencyRates = {
   "TRY→EUR": 0.028,
   "TRY→XAU": 0.00052,
   "TRY→XAG": 0.034,
-  "USD→TRY": 32.20,
-  "EUR→TRY": 35.50,
+  "USD→TRY": 32.2,
+  "EUR→TRY": 35.5,
   "XAU→TRY": 1920,
   "XAG→TRY": 29,
 };
@@ -18,8 +18,8 @@ const accountTypeMap = {
   0: { label: "₺ TRY", short: "TRY" },
   1: { label: "$ USD", short: "USD" },
   2: { label: "€ EUR", short: "EUR" },
-  3: { label: "🪙 Altın", short: "XAU" },
-  4: { label: "🥈 Gümüş", short: "XAG" },
+  3: { label: "XAU Altın", short: "XAU" },
+  4: { label: "XAG Gümüş", short: "XAG" },
 };
 
 const ExchangePage = () => {
@@ -37,7 +37,9 @@ const ExchangePage = () => {
   // ✅ dışarı aldık ki hem useEffect hem işlem sonrası çağrabilelim
   const fetchAccounts = async () => {
     try {
-      const res = await axios.get(`http://localhost:5084/api/accounts?userId=${user.id}`);
+      const res = await axios.get(
+        `http://localhost:5084/api/accounts?userId=${user.id}`
+      );
       setAccounts(res.data);
     } catch (err) {
       console.error("Hesaplar alınamadı", err);
@@ -104,7 +106,9 @@ const ExchangePage = () => {
 
       const converted = (parseFloat(amount) * exchangeRate).toFixed(2);
       setSuccessMsg("✅ Döviz dönüşümü başarılı.");
-      setResult(`${formatCurrency(amount)} → ${formatCurrency(converted)} (${rateText})`);
+      setResult(
+        `${formatCurrency(amount)} → ${formatCurrency(converted)} (${rateText})`
+      );
       setAmount("");
     } catch (err) {
       console.error("Exchange hatası", err);
@@ -114,12 +118,14 @@ const ExchangePage = () => {
 
   const getAccountLabel = (acc) => {
     const type = accountTypeMap[acc.accountType];
-    return `${type.label} — ${acc.iban} | Bakiye: ${formatCurrency(acc.balance)}`;
+    return `${type.label} — ${acc.iban} | Bakiye: ${formatCurrency(
+      acc.balance
+    )}`;
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-xl mx-auto bg-white p-6 rounded-xl shadow space-y-4">
+    <div className="min-h-[calc(100vh-3rem)] flex justify-center items-center bg-gray-100 p-6">
+      <div className="w-full max-w-xl bg-white p-6 rounded-xl shadow space-y-4">
         <h2 className="text-2xl font-bold">🔁 Kur Dönüşüm</h2>
 
         {successMsg && <div className="text-green-600">{successMsg}</div>}

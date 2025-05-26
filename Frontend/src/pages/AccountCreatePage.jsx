@@ -40,33 +40,35 @@ const AccountCreatePage = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded-xl shadow mt-10">
-      <h2 className="text-xl font-bold mb-4">🆕 Yeni Hesap Oluştur</h2>
+    <div className="min-h-[calc(100vh-3rem)] flex justify-center items-center bg-gray-100 p-6">
+      <div className="w-full max-w-md bg-white p-6 rounded-xl shadow space-y-4">
+        <h2 className="text-xl font-bold mb-4">🆕 Yeni Hesap Oluştur</h2>
 
-      <div className="space-y-4">
-        <div>
-          <label className="block font-medium mb-1">Hesap Türü</label>
-          <select
-            className="w-full border p-2 rounded"
-            value={accountType}
-            onChange={(e) => setAccountType(e.target.value)}
+        <div className="space-y-4">
+          <div>
+            <label className="block font-medium mb-1">Hesap Türü</label>
+            <select
+              className="w-full border p-2 rounded"
+              value={accountType}
+              onChange={(e) => setAccountType(e.target.value)}
+            >
+              <option value="">Seç</option>
+              {accountTypes.map((t) => (
+                <option key={t.value} value={t.value}>
+                  {t.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <button
+            onClick={handleCreate}
+            disabled={isLoading}
+            className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
           >
-            <option value="">Seç</option>
-            {accountTypes.map((t) => (
-              <option key={t.value} value={t.value}>
-                {t.label}
-              </option>
-            ))}
-          </select>
+            {isLoading ? "Oluşturuluyor..." : "Hesap Oluştur"}
+          </button>
         </div>
-
-        <button
-          onClick={handleCreate}
-          disabled={isLoading}
-          className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
-        >
-          {isLoading ? "Oluşturuluyor..." : "Hesap Oluştur"}
-        </button>
       </div>
     </div>
   );

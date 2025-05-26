@@ -7,17 +7,24 @@ import ExchangePage from "../pages/ExchangePage";
 import AccountDetailsPage from "../pages/AccountDetailsPage";
 import AccountCreatePage from "../pages/AccountCreatePage";
 import Layout from "../components/Layout";
+import PrivateRoute from "./PrivateRoute"; 
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Layout dışı sayfalar (giriş/kayıt) */}
+        {/* Giriş/Kayıt serbest */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
-        {/* Layout uygulanan sayfalar */}
-        <Route element={<Layout />}>
+        {/* Giriş yapılmış kullanıcılar için korumalı alan */}
+        <Route
+          element={
+            <PrivateRoute>
+              <Layout />
+            </PrivateRoute>
+          }
+        >
           <Route path="/" element={<HomePage />} />
           <Route path="/account/:id" element={<AccountDetailsPage />} />
           <Route path="/transfer" element={<TransferPage />} />

@@ -6,8 +6,8 @@ const accountTypes = [
   { value: 0, label: "₺ Türk Lirası", short: "TRY" },
   { value: 1, label: "$ Dolar", short: "USD" },
   { value: 2, label: "€ Euro", short: "EUR" },
-  { value: 3, label: "🪙 Altın", short: "XAU" },
-  { value: 4, label: "🥈 Gümüş", short: "XAG" },
+  { value: 3, label: "XAU Altın", short: "XAU" },
+  { value: 4, label: "XAG Gümüş", short: "XAG" },
 ];
 
 const TransferPage = () => {
@@ -103,12 +103,14 @@ const TransferPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-xl mx-auto bg-white p-6 rounded-xl shadow space-y-4">
-        <h2 className="text-2xl font-bold">💸 Para Transferi</h2>
+    <div className="min-h-[calc(100vh-3rem)] flex justify-center items-center bg-gray-100 p-6">
+      <div className="w-full max-w-xl bg-white p-6 rounded-xl shadow space-y-4">
+        <h2 className="text-2xl font-bold">Para Transferi</h2>
 
         {successMsg && <div className="text-green-600">{successMsg}</div>}
         {errorMsg && <div className="text-red-600">{errorMsg}</div>}
+
+        {/* ... geri kalan form alanları ... */}
 
         <label className="block font-medium">💱 Hesap Türü</label>
         <select

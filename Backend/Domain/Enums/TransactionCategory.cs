@@ -2,7 +2,7 @@ namespace Domain.Entities;
 
 public enum TransactionCategory
 {
-    Manual,
+    Other,
     Market,
     Fuel,
     TransferFee,

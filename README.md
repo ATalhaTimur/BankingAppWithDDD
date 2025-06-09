@@ -3,6 +3,7 @@
 This is a full-stack financial management application where individual users can manage accounts in multiple currencies and precious metals. The backend is built with **.NET 8** and the frontend is built with **React + Vite**. The project follows **Clean Architecture** and **Domain-Driven Design (DDD)** principles to ensure scalability, maintainability, and separation of concerns.
 
 > Developed by: Abdulkerim Talha Timur
+> 
 > 📄 [Project Presentation (PDF)] (https://github.com/user-attachments/files/20656291/Finansal.Yonetim.Web.Uygulamasi.pptx)
 
 

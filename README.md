@@ -94,3 +94,13 @@ Run the following command from the root of the project:
 
 ```bash
 docker-compose up -d
+
+## 🖥️ Screenshots
+<img width="1489" height="830" alt="Ekran Resmi 2025-08-21 23 56 11" src="https://github.com/user-attachments/assets/889b3085-921a-4f92-ab7d-7b879a7967bb" />
+<img width="1494" height=<img width="1492" height="847" alt="Ekran Resmi 2025-08-21 23 59 51" src="https://github.com/user-attachments/assets/54b2ef57-8c65-4d97-82ca-a47d650fa38a" />
+"851" alt="Ekran Resmi 2025-08-21 23 58 31" src="https://github.com/user-attachments/assets/5b030a30-3793-456e-8986-03f80df29f64" />
+<img width="1508" height="862" alt="Ekran Resmi 2025-08-21 23 59 31" src="https://github.c<img width="1474" height="830" alt="Ekran Resmi 2025-08-22 00 00 19" src="https://github.com/user-attachments/assets/b8083509-f256-4dee-930d-a25a3d0ec791" />
+om/user-attachments/assets/7d300a17-49ad-4acf-b8ec-91ff93e3dea1" />
+
+<img width="1491" height="834" alt="Ekran Resmi 2025-08-22 00 00 48" src="https://github.com/user-attachments/assets/4f86c022-2812-4712-b2c2-1ce8eade3003" />
+<img width="1483" height="821" alt="Ekran Resmi 2025-08-22 00 01 40" src="https://github.com/user-attachments/assets/e9f795be-4be6-4d4c-872a-69229d26957f" />

@@ -4,7 +4,7 @@ This is a full-stack financial management application where individual users can
 
 > Developed by: Abdulkerim Talha Timur
 > 
-> 📄 [Project Presentation (PDF)] (https://github.com/user-attachments/files/20656291/Finansal.Yonetim.Web.Uygulamasi.pptx)
+
 
 
 ---
